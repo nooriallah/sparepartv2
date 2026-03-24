@@ -1,0 +1,82 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Idea;
+use Illuminate\Http\Request;
+
+class IdeaController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $ideas = Idea::all();
+
+        return view('idea.index', compact('ideas'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view("idea.create");
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            "note" => ["required", "min:10"],
+        ]);
+        
+        Idea::create([
+            'note' => request("note"),
+            'status' => 'pending',
+        ]);
+        return redirect('/ideas/index');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Idea $idea)
+    {
+        return view("idea.show", compact("idea"));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Idea $idea)
+    {
+        return view("idea.edit", compact("idea"));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Idea $idea)
+    {
+        $idea->update([
+            "note" => $request->input("note"),
+            'status' => 'pending',
+        ]);
+
+        return redirect("/ideas/$idea->id");
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Idea $idea)
+    {
+        $idea->delete();
+
+        return redirect("ideas/index");
+    }
+}
