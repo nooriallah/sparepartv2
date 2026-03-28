@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,19 +13,19 @@
     {{-- Tailwind cdn --}}
     <script src="https://cdn.tailwindcss.com"></script>
 
+    {{-- DaisyUI --}}
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
 </head>
 <body>
 
+    <header>
+        <x-navbar />
+    </header>
+
     <main class="p-10">
-        <h1 class="text-3xl">Hello Laravel</h1>
-        <nav class="my-10">
-            <ul class="flex gap-5">
-                <li><a href="/ideas/index" class="text-blue-400">Home</a></li>
-                <li><a href="/ideas/create" class="text-blue-400">Add Idea</a></li>
-                <li><a href="/about" class="text-info">About</a></li>
-                <li><a href="/contact" class="text-info">Contact</a></li>
-            </ul>
-        </nav>
 
         {{ $slot }}
 
