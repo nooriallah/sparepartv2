@@ -33,13 +33,14 @@ class IdeaController extends Controller
         $request->validate([
             "note" => ["required", "min:10"],
         ]);
-        
+
         Idea::create([
             'note' => request("note"),
             'status' => 'pending',
         ]);
         return redirect('/ideas/index');
     }
+
 
     /**
      * Display the specified resource.
