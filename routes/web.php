@@ -13,4 +13,4 @@ Route::post("/ideas/add", [IdeaController::class, "store"]);
 Route::get('/ideas/{idea}', [IdeaController::class, 'show']);
 Route::get("/ideas/{idea}/edit", [IdeaController::class, "edit"]);
 Route::patch("/ideas/{idea}/update", [IdeaController::class, "update"]);
-Route::delete("/ideas/{idea}/delete", [IdeaController::class, "delete"]);
+Route::delete("/ideas/{idea}/delete", [IdeaController::class, "destroy"]);
