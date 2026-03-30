@@ -1,7 +1,7 @@
 <div class="navbar bg-base-100 shadow-sm">
 
     <div class="navbar-start">
-        <a class="btn btn-ghost text-xl">Sparepartv2</a>
+        <a class="btn btn-ghost text-xl" href="/">Sparepartv2</a>
     </div>
 
 

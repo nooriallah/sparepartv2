@@ -13,6 +13,9 @@
             @endforeach
 
         </div>
+
+        @else
+        <h3>No Idea exist <a href="/ideas/create" class="text-blue-400">Create new</a></h3>
         @endif
 
     </x-layout>
