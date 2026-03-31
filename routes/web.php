@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Home Route
- Route::get('/', [IdeaController::class, 'index']);
- Route::get('/ideas/index', [IdeaController::class, 'index']);
-
-// Showing all ideas
-Route::middleware("auth")->group(function () {
+ Route::get('/', function() {
+    return 'Homepage sample';
+ });
+ 
+ // Showing all ideas
+ Route::middleware("auth")->group(function () {
+    Route::get('/ideas/index', [IdeaController::class, 'index']);
    
     Route::get('/ideas/create', [IdeaController::class, 'create']);
     Route::post("/ideas/add", [IdeaController::class, "store"]);

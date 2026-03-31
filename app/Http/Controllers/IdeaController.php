@@ -16,7 +16,11 @@ class IdeaController extends Controller
     {
         // $ideas = Idea::all();
         // $ideas = Idea::query()->where(["user_id" => Auth::user()->id])->get();
-        $ideas = Idea::where("user_id", Auth::user()->id)->get();
+        // $ideas = Idea::where("user_id", Auth::user()->id)->get();
+
+        // Using elequent
+        $ideas = Auth::user()->ideas;
+
 
         return view('idea.index', compact('ideas'));
     }
@@ -37,12 +41,18 @@ class IdeaController extends Controller
         $request->validate([
             "note" => ["required", "min:10"],
         ]);
-        
-        Idea::create([
-        "user_id" => Auth::user()->id,    
-        'note' => request("note"),
-            
+
+        // Using elequent
+        Auth::user()->ideas()->create([
+            'note' => request("note"),
         ]);
+
+        // Idea::create([
+        //     "user_id" => Auth::user()->id,
+        //     'note' => request("note"),
+
+        // ]);
+
         return redirect('/ideas/index');
     }
 
