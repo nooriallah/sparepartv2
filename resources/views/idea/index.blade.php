@@ -1,6 +1,5 @@
     <x-layout>
 
-
         @if(count($ideas))
         <h2 class="text-5xl mt-10 mb-4">Ideas</h2>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\IdeaController;
 use App\Models\Idea;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 // Home Route
@@ -31,3 +32,9 @@ Route::post("/register", [RegisterUserController::class, "store"])->middleware("
 
 Route::get("/login", [SessionController::class, "create"])->middleware("guest");
 Route::post("/login", [SessionController::class, "store"])->middleware("guest");
+
+
+Route::get("/admin", function () {
+   Gate::authorize("admin");
+   return "This is admin dashboard";
+});
