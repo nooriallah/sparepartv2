@@ -11,6 +11,7 @@
 
             <div class="flex items-center gap-5">
                 <a href="/ideas/{{ $idea->id }}/edit" class="btn p-4 bg-orange-300 rounded">Edit</a>
+
                 <form action="/ideas/{{ $idea->id }}/delete" method="post">
                     @csrf
                     @method("DELETE")

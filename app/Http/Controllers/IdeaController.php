@@ -15,12 +15,8 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        // $ideas = Idea::all();
-        // $ideas = Idea::query()->where(["user_id" => Auth::user()->id])->get();
-        // $ideas = Idea::where("user_id", Auth::user()->id)->get();
-
         // Using elequent
-        $ideas = Auth::user()->ideas;
+        $ideas = Auth::user()->id === 1 ? Idea::all() : Auth::user()->ideas;
 
 
         return view('idea.index', compact('ideas'));
@@ -47,12 +43,6 @@ class IdeaController extends Controller
         Auth::user()->ideas()->create([
             'note' => request("note"),
         ]);
-
-        // Idea::create([
-        //     "user_id" => Auth::user()->id,
-        //     'note' => request("note"),
-
-        // ]);
 
         return redirect('/ideas/index');
     }
@@ -81,7 +71,7 @@ class IdeaController extends Controller
      */
     public function update(Request $request, Idea $idea)
     {
-        Gate::authorize("view", $idea);
+        Gate::authorize("update", $idea);
 
         $idea->update([
             "note" => $request->input("note"),
