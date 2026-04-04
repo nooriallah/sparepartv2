@@ -6,6 +6,7 @@ use App\Http\Requests\IdeaRequest;
 use App\Models\Idea;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class IdeaController extends Controller
 {
@@ -62,6 +63,8 @@ class IdeaController extends Controller
      */
     public function show(Idea $idea)
     {
+        Gate::authorize("view", $idea);
+
         return view("idea.show", compact("idea"));
     }
 
@@ -78,6 +81,8 @@ class IdeaController extends Controller
      */
     public function update(Request $request, Idea $idea)
     {
+        Gate::authorize("view", $idea);
+
         $idea->update([
             "note" => $request->input("note"),
             'status' => 'pending',

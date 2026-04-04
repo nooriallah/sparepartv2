@@ -11,7 +11,8 @@ class Idea extends Model
     protected $fillable = ["note", 'user_id'];
 
     // Getting user for the idea
-    public function user(): BelongsTo {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 }

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/ideas/create', [IdeaController::class, 'create']);
     Route::post("/ideas/add", [IdeaController::class, "store"]);
     Route::get('/ideas/{idea}', [IdeaController::class, 'show']);
-    Route::get("/ideas/{idea}/edit", [IdeaController::class, "edit"]);
+    Route::get("/ideas/{idea}/edit", [IdeaController::class, "edit"])->can("view,idea");
     Route::patch("/ideas/{idea}/update", [IdeaController::class, "update"]);
     Route::delete("/ideas/{idea}/delete", [IdeaController::class, "destroy"]);
 
