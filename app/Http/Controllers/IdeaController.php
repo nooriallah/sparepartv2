@@ -40,11 +40,11 @@ class IdeaController extends Controller
         ]);
 
         // Using elequent
-        $user = Auth::user()->ideas()->create([
+        $idea = Auth::user()->ideas()->create([
             'note' => request("note"),
         ]);
 
-        Auth::user()->notify(new IdeaPublished($user));
+        Auth::user()->notify(new IdeaPublished($idea));
 
         return redirect('/ideas/index');
     }
