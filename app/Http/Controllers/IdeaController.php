@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IdeaRequest;
 use App\Models\Idea;
+use App\Notifications\IdeaPublished;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -17,7 +18,6 @@ class IdeaController extends Controller
     {
         // Using elequent
         $ideas = Auth::user()->id === 1 ? Idea::all() : Auth::user()->ideas;
-
 
         return view('idea.index', compact('ideas'));
     }
@@ -40,9 +40,11 @@ class IdeaController extends Controller
         ]);
 
         // Using elequent
-        Auth::user()->ideas()->create([
+        $user = Auth::user()->ideas()->create([
             'note' => request("note"),
         ]);
+
+        Auth::user()->notify(new IdeaPublished($user));
 
         return redirect('/ideas/index');
     }

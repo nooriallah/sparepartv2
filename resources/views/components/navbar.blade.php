@@ -21,6 +21,7 @@
         <a class="btn btn-primary" href="/login">Login</a>
         @endguest
         @auth
+        <a href="#" class="border p-2 rounded">{{ Auth::user()->name }}</a>
         <form action="/logout" method="post">
             @csrf
             @method("DELETE")
